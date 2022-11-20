@@ -1,15 +1,15 @@
 package org.konrad;
 
+import org.konrad.domain.Calculator;
 import org.konrad.interfaces.Cli;
-
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Cli cli = new Cli();
 
-        // System.out.println("Hello world!");
+        Calculator calculator = new Calculator(cli);
 
+        calculator.run();
     }
 
     /*

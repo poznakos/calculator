@@ -1,6 +1,6 @@
-package org.konrad;
+package org.konrad.interfaces;
 
-import org.konrad.interfaces.Inputable;
+import org.konrad.domain.Inputable;
 
 public class InputMock implements Inputable {
     private final String testText;
@@ -10,8 +10,7 @@ public class InputMock implements Inputable {
     }
 
     @Override
-    public double getInput() {
-
-        return 0;
+    public String getInput() {
+        return testText;
     }
 }
