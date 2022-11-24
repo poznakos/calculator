@@ -1,6 +1,7 @@
 package org.konrad.domain;
 
 import org.junit.jupiter.api.Test;
+import org.konrad.interfaces.InputMock;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,12 +12,13 @@ import java.util.stream.Collectors;
 
 public class CalculatorUT {
 
-//    private final InputMock inputMock = new InputMock();
-//    private final Calculator calculator
-
     @Test
-    public void calculateExpressions(){
+    public void calculateExpressions() {
         // GIVEN
+        Calculator calculator = new Calculator(new InputMock("22+33*44"));
+
+        // WHEN
+        calculator.run();
 
     }
 

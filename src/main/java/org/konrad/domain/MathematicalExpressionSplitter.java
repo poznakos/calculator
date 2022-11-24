@@ -5,9 +5,9 @@ import java.util.regex.Pattern;
 
 public class MathematicalExpressionSplitter {
 
-    private final String REGEX_PATTERN = "\\d+|[\\+\\-\\*\\/]";
+    private static final String REGEX_PATTERN = "\\d+|[\\+\\-\\*\\/]";
 
-    public String[] split(String mathExpression) {
+    String[] split(String mathExpression) {
         return Pattern.compile(REGEX_PATTERN)
                 .matcher(mathExpression)
                 .results()
