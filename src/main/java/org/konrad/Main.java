@@ -9,7 +9,7 @@ public class Main {
 
         Calculator calculator = new Calculator(cli);
 
-        calculator.run();
+        calculator.calculate();
     }
 
     /*

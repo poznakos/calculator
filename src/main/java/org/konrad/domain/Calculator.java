@@ -9,18 +9,14 @@ public class Calculator {
         this.inputable = inputable;
     }
 
-    public void run(){
+    public void calculate() {
         String possibleMathExpression = inputable.getInput();
         String mathExpression = validator.validate(possibleMathExpression);
-        calculate(mathExpression);
-    }
-
-    private void calculate(String mathExpression) {
         String[] mathExpressionComponents = splitter.split(mathExpression);
         calculateByRPN(mathExpressionComponents);
     }
 
-    private void calculateByRPN(String[] mathExpressionComponents) {
+    private void calculateByRPN(String[] splittedMathExpression) {
 
     }
 
