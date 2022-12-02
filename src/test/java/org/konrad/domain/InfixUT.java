@@ -16,40 +16,42 @@ public class InfixUT {
     @Test
     public void checkIfSingleOperatorPass() {
         // GIVEN
-        InfixData infix = new InfixData("2-3");
+        Infix infix = new Infix("2-3");
         // WHEN
-        List<String> postfix = infix.toPostfix();
+        Postfix postfix = infix.toPostfix();
         // THEN
-        Assertions.assertEquals("[2, 3, -]", postfix.toString());
+        Assertions.assertEquals("[2, 3, -]", postfix.getExpression().toString());
     }
 
     @Test
     public void checkIfSameOperatorPriorityPass() {
         // GIVEN
-        InfixData infix = new InfixData("2-3+5");
+        Infix infix = new Infix("2-3+5");
         // WHEN
-        List<String> postfix = infix.toPostfix();
+        Postfix postfix = infix.toPostfix();
         // THEN
-        Assertions.assertEquals("[2, 3, -, 5, +]", postfix.toString());
+        Assertions.assertEquals("[2, 3, -, 5, +]", postfix.getExpression().toString());
     }
 
     @Test
     public void checkIfWeakBeforeStrongOperatorPriorityPass() {
         // GIVEN
-        InfixData infix = new InfixData("2-3*5");
+        Infix infix = new Infix("2-3*5");
         // WHEN
-        List<String> postfix = infix.toPostfix();
+        Postfix postfix = infix.toPostfix();
+        postfix.calculate();
         // THEN
-        Assertions.assertEquals("[2, 3, 5, *, -]", postfix.toString());
+        Assertions.assertEquals("[2, 3, 5, *, -]", postfix.getExpression().toString());
     }
 
     @Test
     public void checkIfStrongBeforeWeakOperatorPriorityPass() {
         // GIVEN
-        InfixData infix = new InfixData("2*3-5");
+        Infix infix = new Infix("2*3-5");
         // WHEN
-        List<String> postfix = infix.toPostfix();
+        Postfix postfix = infix.toPostfix();
+        postfix.calculate();
         // THEN
-        Assertions.assertEquals("[2, 3, *, 5, -]", postfix.toString());
+        Assertions.assertEquals("[2, 3, *, 5, -]", postfix.getExpression().toString());
     }
 }

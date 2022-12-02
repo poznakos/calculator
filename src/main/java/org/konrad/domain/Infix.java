@@ -5,25 +5,26 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Stack;
 
-public class InfixData {
+import static org.konrad.domain.OperandHelper.isNumeric;
 
-    private final String[] infix;
+public class Infix {
 
-    public InfixData(String infix) {
-        this.infix = new MathematicalExpressionSplitter().split(infix);
+    private final String[] expression;
+
+    public Infix(String expression) {
+        this.expression = new MathematicalExpressionSplitter().split(expression);
     }
 
-    public InfixData(String[] infix) {
-        this.infix = infix;
+    public Infix(String[] expression) {
+        this.expression = expression;
     }
 
-    public List<String> toPostfix() {
-//        String[] output = new String[infix.length];
+    public Postfix toPostfix() {
         List<String> output = new ArrayList<>();
         Stack<String> operatorsStack = new Stack<>();
 
-        for (int i = 0; i < infix.length; i++) {
-            String currentElement = infix[i];
+        for (int i = 0; i < expression.length; i++) {
+            String currentElement = expression[i];
 
             if (isNumeric(currentElement)) {
 
@@ -37,8 +38,8 @@ public class InfixData {
 
                 } else {
 
-                    int lastStockOperatorWeight = Operator.getWeight(operatorsStack.peek());
-                    int currentOperator = Operator.getWeight(currentElement);
+                    int lastStockOperatorWeight = OperatorHelper.getWeight(operatorsStack.peek());
+                    int currentOperator = OperatorHelper.getWeight(currentElement);
 
                     if (lastStockOperatorWeight < currentOperator) {
 
@@ -64,18 +65,10 @@ public class InfixData {
             output.add(operatorsStack.pop());
         }
 
-        return output;
+        return new Postfix(output);
     }
 
-    private boolean isNumeric(String infix) {
-        try {
-            double val = Double.parseDouble(infix);
-            return true;
-        } catch (Exception e) {
-            System.out.println("Exception: " + e);
-            return false;
-        }
-    }
+
 
 
 }

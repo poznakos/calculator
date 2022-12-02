@@ -9,15 +9,18 @@ public class Calculator {
         this.inputable = inputable;
     }
 
-    public void calculate() {
-        String possibleMathExpression = inputable.getInput();
-        String mathExpression = validator.validate(possibleMathExpression);
-        String[] mathExpressionComponents = splitter.split(mathExpression);
-        calculateByRPN(mathExpressionComponents);
+    public Double calculate() {
+        String possibleMathExpression = inputable.getInput().replaceAll("\\s","");
+        String infixMathExpression = validator.validate(possibleMathExpression);
+        String[] infixMathExpressionArray = splitter.split(infixMathExpression);
+        return calculateByRPN(infixMathExpressionArray);
     }
 
-    private void calculateByRPN(String[] splittedMathExpression) {
-
+    private Double calculateByRPN(String[] infixMathExpressionArray) {
+        Infix infix = new Infix(infixMathExpressionArray);
+        Postfix postfix = infix.toPostfix();
+        Double result = postfix.calculate();
+        return result;
     }
 
 
