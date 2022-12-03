@@ -13,7 +13,9 @@ public class Calculator {
         String possibleMathExpression = inputable.getInput().replaceAll("\\s","");
         String infixMathExpression = validator.validate(possibleMathExpression);
         String[] infixMathExpressionArray = splitter.split(infixMathExpression);
-        return calculateByRPN(infixMathExpressionArray);
+        Double result = calculateByRPN(infixMathExpressionArray);
+        System.out.println("Result: "+result);
+        return result;
     }
 
     private Double calculateByRPN(String[] infixMathExpressionArray) {

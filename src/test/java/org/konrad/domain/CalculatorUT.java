@@ -31,7 +31,7 @@ public class CalculatorUT {
         Double result = calculator.calculate();
 
         //THEN
-        Assertions.assertEquals(1474.0d, result);
+        Assertions.assertEquals(-178.0d, result);
     }
 
 }

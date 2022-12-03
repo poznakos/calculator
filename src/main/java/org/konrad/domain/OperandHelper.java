@@ -10,7 +10,7 @@ public class OperandHelper {
         try {
             return Double.parseDouble(element);
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
+//            System.out.println("Exception: " + e);
             return null;
         }
     }
