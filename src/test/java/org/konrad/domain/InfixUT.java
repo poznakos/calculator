@@ -54,4 +54,15 @@ public class InfixUT {
         // THEN
         Assertions.assertEquals("[2, 3, *, 5, -]", postfix.getExpression().toString());
     }
+
+    @Test
+    public void checkIfWeakerOperatorStaysOnStackPass() {
+        // GIVEN
+        Infix infix = new Infix("2*3-5*6/7*8");
+        // WHEN
+        Postfix postfix = infix.toPostfix();
+        postfix.calculate();
+        // THEN
+        Assertions.assertEquals("[2, 3, *, 5, 6, *, 7, /, 8, *, -]", postfix.getExpression().toString());
+    }
 }

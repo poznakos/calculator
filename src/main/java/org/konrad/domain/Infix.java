@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Stack;
 
 import static org.konrad.domain.OperandHelper.isNumeric;
+import static org.konrad.domain.OperatorHelper.getWeight;
 
 public class Infix {
 
@@ -38,18 +39,14 @@ public class Infix {
 
                 } else {
 
-                    int lastStockOperatorWeight = OperatorHelper.getWeight(operatorsStack.peek());
-                    int currentOperator = OperatorHelper.getWeight(currentElement);
-
-                    if (lastStockOperatorWeight < currentOperator) {
+                    if (operatorsStack.empty()) {
 
                         operatorsStack.push(currentElement);
 
                     } else {
 
                         // >=
-                        Enumeration enu = operatorsStack.elements();
-                        while (enu.hasMoreElements()) {
+                        while (!operatorsStack.empty() && getWeight(operatorsStack.peek()) >= getWeight(currentElement)) {
                             output.add(operatorsStack.pop());
                         }
 
@@ -60,15 +57,16 @@ public class Infix {
             }
         }
 
-        Enumeration enu = operatorsStack.elements();
-        while (enu.hasMoreElements()) {
-            output.add(operatorsStack.pop());
-        }
+        addAllStackElementToList(output, operatorsStack);
 
         return new Postfix(output);
     }
 
-
-
+    private static void addAllStackElementToList(List<String> output, Stack<String> operatorsStack) {
+        Enumeration enu = operatorsStack.elements();
+        while (enu.hasMoreElements()) {
+            output.add(operatorsStack.pop());
+        }
+    }
 
 }
